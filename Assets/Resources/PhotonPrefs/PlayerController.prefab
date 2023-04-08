@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8087216979993696857}
   - component: {fileID: 8087216979993696856}
+  - component: {fileID: 7707889656238745857}
   m_Layer: 0
   m_Name: Gun
   m_TagString: Untagged
@@ -84,6 +85,21 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &7707889656238745857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8087216979993696862}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c583b2c6d752ce4a9450e7c95c60349, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _transform: {fileID: 8087216979993696857}
+  _shootInterval: 0.2
+  _long: 0.75
 --- !u!1 &8087216980383974358
 GameObject:
   m_ObjectHideFlags: 0
@@ -215,6 +231,7 @@ MonoBehaviour:
   _moveSpeed: 5
   _shootingDeadZone: 0.9
   _cameraPrefab: {fileID: 818521380042652989, guid: 49d27841ef0ab07449a1acc2f96f594c, type: 3}
+  _gun: {fileID: 7707889656238745857}
 --- !u!50 &4685122580293831451
 Rigidbody2D:
   serializedVersion: 4
