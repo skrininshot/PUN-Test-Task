@@ -31,6 +31,12 @@ public class RoomWindow : MonoBehaviourPunCallbacks
         PhotonNetwork.LeaveRoom();
     }
 
+
+    public override void OnMasterClientSwitched(Player newMasterClient)
+    {
+        _startGame.gameObject.SetActive(PhotonNetwork.IsMasterClient);
+    }
+
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {
         Instantiate(_playerItemPrefab, _playerList).SetPlayer(newPlayer);

@@ -9,10 +9,10 @@ public class Lobby : MonoBehaviourPunCallbacks
     [SerializeField] private ErrorMessage _errorText;
     [SerializeField] private LoadingTextAnimation _loadingTextAnimation;
     [SerializeField] private RoomWindow _room;
-
+    
     private void Start()
     {
-        PhotonNetwork.NickName = "Player-" + Math.GetRandomDigits(5);
+        PhotonNetwork.NickName = "Player" + Math.GetRandomDigits(5);
     }
 
     public void CreateRoom()
