@@ -4,11 +4,16 @@ using Photon.Pun;
 
 public class Lobby : MonoBehaviourPunCallbacks
 {
-    [SerializeField] private RoomWindow _room;
     [SerializeField] private InputField _createRoomText;
     [SerializeField] private InputField _joinRoomText;
     [SerializeField] private ErrorMessage _errorText;
     [SerializeField] private LoadingTextAnimation _loadingTextAnimation;
+    [SerializeField] private RoomWindow _room;
+
+    private void Start()
+    {
+        PhotonNetwork.NickName = "Player-" + Math.GetRandomDigits(5);
+    }
 
     public void CreateRoom()
     {
@@ -17,19 +22,10 @@ public class Lobby : MonoBehaviourPunCallbacks
         PhotonNetwork.CreateRoom(_createRoomText.text);
         _loadingTextAnimation.gameObject.SetActive(true);
     }
-
     public override void OnCreateRoomFailed(short returnCode, string message)
     {
         _loadingTextAnimation.gameObject.SetActive(false);
-        _room.gameObject.SetActive(false);
         _errorText.ShowMessage("Something went wrong!", 5f);
-    }
-
-    public override void OnJoinedRoom()
-    {
-        _room.gameObject.SetActive(true);
-        _room.SetRoomName(PhotonNetwork.CurrentRoom.Name);
-        _loadingTextAnimation.gameObject.SetActive(false);
     }
 
     public void JoinRoom()
@@ -40,18 +36,9 @@ public class Lobby : MonoBehaviourPunCallbacks
         _loadingTextAnimation.gameObject.SetActive(true);
     }
 
-    public void StartGame()
+    public override void OnJoinedRoom()
     {
-
+        _room.gameObject.SetActive(true);
+        _loadingTextAnimation.gameObject.SetActive(false);
     }
-
-    public void LeaveRoom()
-    {   
-        PhotonNetwork.LeaveRoom();
-    }
-
-    public override void OnLeftRoom()
-    {
-        _room.gameObject.SetActive(false);
-    } 
 }
