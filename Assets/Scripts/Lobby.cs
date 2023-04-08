@@ -24,8 +24,8 @@ public class Lobby : MonoBehaviourPunCallbacks
     }
     public override void OnCreateRoomFailed(short returnCode, string message)
     {
-        _loadingTextAnimation.gameObject.SetActive(false);
         _errorText.ShowMessage("Something went wrong!", 5f);
+        _loadingTextAnimation.gameObject.SetActive(false);
     }
 
     public void JoinRoom()
@@ -34,6 +34,12 @@ public class Lobby : MonoBehaviourPunCallbacks
 
         PhotonNetwork.JoinRoom(_joinRoomText.text);
         _loadingTextAnimation.gameObject.SetActive(true);
+    }
+
+    public override void OnJoinRoomFailed(short returnCode, string message)
+    {
+        _errorText.ShowMessage("Something went wrong!", 5f);
+        _loadingTextAnimation.gameObject.SetActive(false);
     }
 
     public override void OnJoinedRoom()
